@@ -1,6 +1,6 @@
 ﻿//using Selenium;  
 
-namespace testingbotdemo
+namespace projectqdotnet
 {
     using System;
     using System.IO;

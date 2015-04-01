@@ -1,4 +1,4 @@
-﻿namespace testingbotdemo
+﻿namespace projectqdotnet
 {
     using System;
 
