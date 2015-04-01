@@ -1,95 +1,55 @@
-﻿//namespace projectqdotnet
-//{
-//    using System;
-    
-//    using OpenQA.Selenium.Remote;
+﻿namespace projectqdotnet
+{
+    using System;
 
-//    public class UnitTest1
-//    {
-//        private TestContext testContextInstance;
-//        /// <summary>
-//        ///Gets or sets the test context which provides
-//        ///information about and functionality for the current test run.
-//        ///</summary>
-//        public TestContext TestContext
-//        {
-//            get
-//            {
-//                return this.testContextInstance;
-//            }
-//            set
-//            {
-//                this.testContextInstance = value;
-//            }
-//        }
+    using NUnit.Framework;
 
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Remote;
 
-//        private TestingBotDriver driver;
+    using ProjectQ.DotNet;
 
-//        [TestCleanup]
-//        public void CleanUp()
-//        {
-//            String sessionId = this.driver.getSessionId();
-//            bool success = this.TestContext.CurrentTestOutcome == UnitTestOutcome.Passed;
-//            try
-//            {
-//                this.driver.updateTestStatus(sessionId, success, this.TestContext.FullyQualifiedTestClassName + " " + DateTime.Now.ToLongTimeString() + " " + this.TestContext.CurrentTestOutcome.ToString());
-//            }
-//            catch (Exception e)
-//            {
-//                Console.WriteLine(e.Message);
-//            }
-//            finally
-//            {
-//                this.driver.Quit();
-//            }
-//        }
+    [TestFixture]
+    public class Test
+    {
+        private TestingDriver driver;
 
-//        /// <param name="cap">TestObj</param>
-//        /// <param name="version">browser version</param>
-//        /// <param name="platform">OS</param>
-//        /// <returns></returns>
-//        private DesiredCapabilities GetTestObj(DesiredCapabilities cap, string version, string platform)
-//        {
-//            cap.SetCapability(CapabilityType.Platform, platform);
-//            cap.SetCapability(CapabilityType.Version, version);
-//            cap.IsJavaScriptEnabled = true;
-//            cap.SetCapability("screenshot", true);
-//            cap.SetCapability("name", "test name");
-//            cap.SetCapability("api_key", TestingBotDriver.APIKEY);
-//            cap.SetCapability("api_secret", TestingBotDriver.APISECRET);
+        public void CleanUp()
+        {
+            this.driver.Quit();
+        }
 
-//            return cap;
-//        }
+        private static DesiredCapabilities GetTestObj(DesiredCapabilities cap, string version, string platform)
+        {
+            cap.SetCapability(CapabilityType.Platform, platform);
+            cap.SetCapability(CapabilityType.Version, version);
+            cap.IsJavaScriptEnabled = true;
+            cap.SetCapability("screenshot", true);
+            cap.SetCapability("name", "test name");
 
-//        /// <param name="cap"></param>
-//        private void DoTitleTest(DesiredCapabilities cap)
-//        {
-//            this.driver = new TestingBotDriver(new Uri("http://hub.testingbot.com:80/wd/hub/"), cap);
-//            this.driver.Navigate().GoToUrl("http://www.google.com");
+            return cap;
+        }
 
-//            StringAssert.Equals(this.driver.Title, "Google");
-//        }
+        private void DoTitleTest(ICapabilities cap)
+        {
+            this.driver = new TestingDriver(cap);
+            this.driver.Navigate().GoToUrl("http://www.google.com");
 
-//        [TestMethod]
-//        public void Win_InternetExplorer_7()
-//        {
-//            DesiredCapabilities cap = this.GetTestObj(DesiredCapabilities.InternetExplorer(), "7", "WINDOWS");
-//            this.DoTitleTest(cap);
-//        }
+            Assert.That(this.driver.Title, Is.EqualTo("Google"));
+        }
 
-//        [TestMethod]
-//        public void Win_InternetExplorer_8()
-//        {
-//            DesiredCapabilities cap = this.GetTestObj(DesiredCapabilities.InternetExplorer(), "8", "WINDOWS");
-//            this.DoTitleTest(cap);
-//        }
+        [Test]
+        public void Win_InternetExplorer_9()
+        {
+            var cap = GetTestObj(DesiredCapabilities.InternetExplorer(), "9", "WINDOWS");
+            this.DoTitleTest(cap);
+        }
 
-//        [TestMethod]
-//        public void Win_InternetExplorer_9()
-//        {
-//            DesiredCapabilities cap = this.GetTestObj(DesiredCapabilities.InternetExplorer(), "9", "WINDOWS");
-//            this.DoTitleTest(cap);
-//        }
-//    }
-//}
+        [Test]
+        public void Win_InternetExplorer_10()
+        {
+            var cap = GetTestObj(DesiredCapabilities.InternetExplorer(), "10", "WINDOWS");
+            this.DoTitleTest(cap);
+        }
+    }
+}
