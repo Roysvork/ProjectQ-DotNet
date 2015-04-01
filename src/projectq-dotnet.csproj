@@ -42,7 +42,6 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\..\..\..\..\..\..\Selenium DLLs\selenium-dotnet-2.23.0\net40\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\..\..\..\Selenium DLLs\selenium-dotnet-2.23.0\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
